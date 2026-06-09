@@ -2,13 +2,12 @@
   position: sticky;
   top: 0;
   z-index: 10;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-
   padding: 16px 32px;
+  border-bottom: 1px solid #dde2eb;
 }
 
 .app__brand {

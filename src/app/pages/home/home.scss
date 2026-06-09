@@ -1,0 +1,22 @@
+.home {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.home__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.home__title {
+  margin: 0;
+}
+
+.home__subtitle {
+  margin: 8px 0 0;
+  color: var(--tui-text-secondary);
+}
