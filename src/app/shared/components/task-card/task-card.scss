@@ -1,0 +1,59 @@
+.task-card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #dde2eb;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.task-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.task-card__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.task-card__description {
+  margin: 12px 0 0;
+  color: #526070;
+}
+
+.task-card__meta {
+  display: grid;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.task-card__label {
+  font-weight: 600;
+}
+
+.task-card__priority {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.task-card__priority--low {
+  background: #edf7ed;
+  color: #1f7a3f;
+}
+
+.task-card__priority--medium {
+  background: #fff7df;
+  color: #9a6700;
+}
+
+.task-card__priority--high {
+  background: #fdecec;
+  color: #b42318;
+}

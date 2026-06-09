@@ -1,0 +1,34 @@
+<article class="task-card">
+  <div class="task-card__header">
+    <h3 class="task-card__title">
+      {{ task().title }}
+    </h3>
+
+    <span class="task-card__priority task-card__priority--{{ task().priority }}">
+      {{ priorityText }}
+    </span>
+  </div>
+
+  @if (task().description) {
+    <p class="task-card__description">
+      {{ task().description }}
+    </p>
+  }
+
+  <div class="task-card__meta">
+    <div>
+      <span class="task-card__label">Дата:</span>
+      {{ deadlineDate }}
+    </div>
+
+    <div>
+      <span class="task-card__label">Время:</span>
+      {{ deadlineTime }}
+    </div>
+
+    <div>
+      <span class="task-card__label">Статус:</span>
+      {{ statusText }}
+    </div>
+  </div>
+</article>
