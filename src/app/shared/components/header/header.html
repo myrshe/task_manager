@@ -1,0 +1,40 @@
+<header class="app__header">
+  <div class="app__brand">TaskManager</div>
+
+  <nav class="app__nav">
+    <a
+      tuiButton
+      size="m"
+      appearance="flat"
+      routerLink="/"
+      routerLinkActive="app__link--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Главная
+    </a>
+
+    <a tuiButton size="m" appearance="flat" routerLink="/day" routerLinkActive="app__link--active">
+      Сегодня
+    </a>
+
+    <a
+      tuiButton
+      size="m"
+      appearance="flat"
+      routerLink="/calendar"
+      routerLinkActive="app__link--active"
+    >
+      Неделя/месяц
+    </a>
+
+    <a
+      tuiButton
+      size="m"
+      appearance="primary"
+      routerLink="/tasks/new"
+      routerLinkActive="app__link--active"
+    >
+      Добавить задачу
+    </a>
+  </nav>
+</header>
