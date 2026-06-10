@@ -26,7 +26,7 @@ export const MOCK_TASKS: Task[] = [
     status: 'todo',
   },
   {
-    id: '3',
+    id: '4',
     title: 'написать тесты для формы',
     description: 'проверить обязательное поля',
     deadline: '2026-06-10T11:00',
@@ -34,7 +34,7 @@ export const MOCK_TASKS: Task[] = [
     status: 'todo',
   },
   {
-    id: '3',
+    id: '5',
     title: 'написать тесты для формы',
     description: 'проверить обязательное поля',
     deadline: '2026-06-10T11:00',
@@ -42,7 +42,7 @@ export const MOCK_TASKS: Task[] = [
     status: 'todo',
   },
   {
-    id: '3',
+    id: '6',
     title: 'написать тесты для формы',
     description: 'проверить обязательное поля',
     deadline: '2026-06-10T11:00',
@@ -50,7 +50,7 @@ export const MOCK_TASKS: Task[] = [
     status: 'todo',
   },
   {
-    id: '3',
+    id: '7',
     title: 'написать тесты для формы',
     description: 'проверить обязательное поля',
     deadline: '2026-06-10T11:00',
@@ -58,7 +58,7 @@ export const MOCK_TASKS: Task[] = [
     status: 'todo',
   },
   {
-    id: '3',
+    id: '8',
     title: 'написать тесты для формы',
     description: 'проверить обязательное поля',
     deadline: '2026-06-10T11:00',

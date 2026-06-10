@@ -1,0 +1,69 @@
+.calendar-page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.calendar-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.calendar-page__title {
+  margin: 0;
+}
+
+.calendar-page__controls {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.calendar-page__control-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calendar-page__control-label {
+  min-width: 130px;
+  font-weight: 600;
+}
+
+.calendar-page__section {
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.calendar-page__section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.calendar-page__section-title {
+  margin: 0;
+  font-size: 22px;
+}
+
+.calendar-page__counter {
+  min-width: 32px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.calendar-page__task-scroll {
+  max-height: 620px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
