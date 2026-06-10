@@ -1,6 +1,8 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+
 import { Task } from '../models/task.model';
 import { MOCK_TASKS } from './task.mock';
+import { TaskDbService } from './task-db.service';
 
 export type TaskSortField = 'deadline' | 'priority';
 export type SortDirection = 'asc' | 'desc';
@@ -9,9 +11,29 @@ export type SortDirection = 'asc' | 'desc';
   providedIn: 'root',
 })
 export class TaskService {
-  private readonly tasksState = signal<Task[]>(MOCK_TASKS);
+  private readonly taskDbService = inject(TaskDbService);
+
+  private readonly tasksState = signal<Task[]>([]);
+  private readonly initializedState = signal(false);
 
   readonly tasks = this.tasksState.asReadonly();
+  readonly initialized = this.initializedState.asReadonly();
+
+  async initTasks(): Promise<void> {
+    const savedTasks = await this.taskDbService.getAllTasks();
+
+    if (savedTasks.length > 0) {
+      this.tasksState.set(savedTasks);
+    } else {
+      this.tasksState.set(MOCK_TASKS);
+
+      for (const task of MOCK_TASKS) {
+        await this.taskDbService.addTask(task);
+      }
+    }
+
+    this.initializedState.set(true);
+  }
 
   getTasks(): Task[] {
     return this.tasks();
@@ -21,23 +43,27 @@ export class TaskService {
     return this.tasks().find((task) => task.id === id);
   }
 
-  addTask(task: Omit<Task, 'id'>): void {
+  async addTask(task: Omit<Task, 'id'>): Promise<void> {
     const newTask: Task = {
       ...task,
       id: crypto.randomUUID(),
     };
 
     this.tasksState.update((tasks) => [...tasks, newTask]);
+    await this.taskDbService.addTask(newTask);
   }
 
-  updateTask(updatedTask: Task): void {
+  async updateTask(updatedTask: Task): Promise<void> {
     this.tasksState.update((tasks) =>
       tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)),
     );
+
+    await this.taskDbService.updateTask(updatedTask);
   }
 
-  deleteTask(id: string): void {
+  async deleteTask(id: string): Promise<void> {
     this.tasksState.update((tasks) => tasks.filter((task) => task.id !== id));
+    await this.taskDbService.deleteTask(id);
   }
 
   getTasksByDate(date: string): Task[] {
@@ -52,14 +78,12 @@ export class TaskService {
 
     return this.tasks().filter((task) => {
       const taskDate = new Date(this.getDatePart(task.deadline)).getTime();
-
       return taskDate >= from && taskDate <= to;
     });
   }
 
   getTodayTasks(): Task[] {
     const today = this.formatDate(new Date());
-
     return this.getTasksByDate(today);
   }
 
@@ -80,7 +104,6 @@ export class TaskService {
     const today = new Date();
 
     const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-
     const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 
     return this.getTasksByDateRange(this.formatDate(startOfMonth), this.formatDate(endOfMonth));
@@ -88,8 +111,14 @@ export class TaskService {
 
   getTopTasks(limit = 5): Task[] {
     const activeTasks = this.tasks().filter((task) => task.status !== 'done');
-
     return this.sortByPriority(activeTasks, 'desc').slice(0, limit);
+  }
+
+  getTasksToStart(limit = 5): Task[] {
+    return this.tasks()
+      .filter((task) => task.status === 'todo')
+      .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime())
+      .slice(0, limit);
   }
 
   sortByDeadline(tasks: Task[], direction: SortDirection): Task[] {
@@ -130,12 +159,5 @@ export class TaskService {
 
   private formatDate(date: Date): string {
     return date.toISOString().split('T')[0];
-  }
-
-  getTasksToStart(limit = 5): Task[] {
-    return this.tasks()
-      .filter((task) => task.status != 'done')
-      .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime())
-      .slice(0, limit);
   }
 }
