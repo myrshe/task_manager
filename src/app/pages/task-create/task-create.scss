@@ -1,0 +1,61 @@
+.task-create {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.task-create__header {
+  margin-bottom: 24px;
+}
+
+.task-create__title {
+  margin: 0;
+}
+
+.task-create__subtitle {
+  margin: 8px 0 0;
+}
+
+.task-create__form {
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.task-create__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.task-create__field {
+  display: grid;
+  gap: 8px;
+}
+
+.task-create__label {
+  font-weight: 600;
+}
+
+.task-create__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.task-create__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .task-create__row {
+    grid-template-columns: 1fr;
+  }
+
+  .task-create__actions {
+    flex-direction: column;
+  }
+}
