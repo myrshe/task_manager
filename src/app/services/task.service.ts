@@ -134,7 +134,7 @@ export class TaskService {
 
   getTasksToStart(limit = 5): Task[] {
     return this.tasks()
-      .filter((task) => task.status === 'todo')
+      .filter((task) => task.status != 'done')
       .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime())
       .slice(0, limit);
   }
