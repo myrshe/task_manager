@@ -1,0 +1,27 @@
+.app__header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 32px;
+  background-color: white;
+  border-bottom: 1px solid #dde2eb;
+}
+
+.app__brand {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.app__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app__main {
+  padding: 32px;
+}

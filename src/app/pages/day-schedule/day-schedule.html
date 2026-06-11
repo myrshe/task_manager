@@ -1,0 +1,40 @@
+<section class="day-page">
+  <div class="day-page__header">
+    <div>
+      <h1 class="day-page__title">Расписание на день</h1>
+
+      <p class="day-page__subtitle">
+        Задачи на сегодня
+      </p>
+    </div>
+  </div>
+
+  <section class="day-page__section">
+    <div class="day-page__section-header">
+      <h2 class="day-page__section-title">Сегодня</h2>
+      <span class="day-page__counter">{{ todayTasks().length }}</span>
+    </div>
+
+    <app-task-list [tasks]="todayTasks()" />
+  </section>
+
+  <div class="day-page__grid">
+    <section class="day-page__section">
+      <div class="day-page__section-header">
+        <h2 class="day-page__section-title">Топ задач недели</h2>
+        <span class="day-page__counter">{{ weekTopTasks().length }}</span>
+      </div>
+
+      <app-task-list [tasks]="weekTopTasks()" />
+    </section>
+
+    <section class="day-page__section">
+      <div class="day-page__section-header">
+        <h2 class="day-page__section-title">Топ задач месяца</h2>
+        <span class="day-page__counter">{{ monthTopTasks().length }}</span>
+      </div>
+
+      <app-task-list [tasks]="monthTopTasks()" />
+    </section>
+  </div>
+</section>

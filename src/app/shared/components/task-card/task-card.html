@@ -1,0 +1,66 @@
+<article class="task-card" [class.task-card--done]="isDone">
+  <div class="task-card__header">
+    <h3 class="task-card__title">
+      {{ task().title }}
+    </h3>
+
+    <span class="task-card__priority task-card__priority--{{ task().priority }}">
+      {{ priorityText }}
+    </span>
+  </div>
+
+  @if (task().description) {
+    <p class="task-card__description">
+      {{ task().description }}
+    </p>
+  }
+
+  <div class="task-card__meta">
+    <div>
+      <span class="task-card__label">Дата:</span>
+      {{ deadlineDate }}
+    </div>
+
+    <div>
+      <span class="task-card__label">Время:</span>
+      {{ deadlineTime }}
+    </div>
+
+    <div>
+      <span class="task-card__label">Статус:</span>
+      {{ statusText }}
+    </div>
+  </div>
+
+  <div class="task-card__actions">
+    <button
+      tuiButton
+      size="s"
+      appearance="flat"
+      [disabled]="task().status === 'todo'"
+      (click)="changeStatus('todo')"
+    >
+      Создана
+    </button>
+
+    <button
+      tuiButton
+      size="s"
+      appearance="flat"
+      [disabled]="task().status === 'in_progress'"
+      (click)="changeStatus('in_progress')"
+    >
+      В процессе
+    </button>
+
+    <button
+      tuiButton
+      size="s"
+      appearance="primary"
+      [disabled]="task().status === 'done'"
+      (click)="changeStatus('done')"
+    >
+      Выполнено
+    </button>
+  </div>
+</article>

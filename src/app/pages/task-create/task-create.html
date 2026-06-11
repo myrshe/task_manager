@@ -1,0 +1,166 @@
+<section class="task-create">
+  <div class="task-create__header">
+    <h1 class="task-create__title">Добавление задачи</h1>
+  </div>
+
+  <form class="task-create__form" [formGroup]="form" (ngSubmit)="submit()">
+    <label class="task-create__field">
+      <span class="task-create__label">Название задачи</span>
+
+      <tui-textfield>
+        <label tuiLabel>Название</label>
+
+        <input
+          tuiInput
+          formControlName="title"
+        />
+      </tui-textfield>
+
+      @if (form.controls.title.touched && form.controls.title.hasError('required')) {
+        <span class="task-create__error">Название обязательно.</span>
+      }
+
+      @if (form.controls.title.touched && form.controls.title.hasError('minlength')) {
+        <span class="task-create__error">Минимум 3 символа.</span>
+      }
+    </label>
+
+    <label class="task-create__field">
+      <span class="task-create__label">Описание</span>
+
+      <tui-textfield>
+        <label tuiLabel>Описание</label>
+
+        <textarea
+          tuiInput
+          formControlName="description"
+        ></textarea>
+      </tui-textfield>
+    </label>
+
+    <div class="task-create__row">
+      <label class="task-create__field">
+        <span class="task-create__label">Дата дедлайна</span>
+
+        <tui-textfield>
+          <label tuiLabel>Дата</label>
+
+          <input
+            tuiInputDate
+            formControlName="deadlineDate"
+          />
+
+          <tui-calendar
+            *tuiDropdown
+            [month]="form.controls.deadlineDate.value ?? defaultActiveMonth()"
+            [showAdjacent]="false"
+            (monthChange)="defaultActiveMonth.set($event)"
+          />
+        </tui-textfield>
+
+        @if (form.controls.deadlineDate.touched && form.controls.deadlineDate.hasError('required')) {
+          <span class="task-create__error">Дата обязательна.</span>
+        }
+      </label>
+
+      <label class="task-create__field">
+        <span class="task-create__label">Время дедлайна</span>
+
+        <tui-textfield>
+          <label tuiLabel>Время</label>
+
+          <input
+            tuiInputTime
+            formControlName="deadlineTime"
+          />
+        </tui-textfield>
+
+        @if (form.controls.deadlineTime.touched && form.controls.deadlineTime.hasError('required')) {
+          <span class="task-create__error">Время обязательно.</span>
+        }
+      </label>
+    </div>
+
+    <div class="task-create__field">
+      <span class="task-create__label">Приоритет</span>
+
+      <div class="task-create__buttons">
+        <button
+          tuiButton
+          type="button"
+          size="s"
+          [appearance]="form.controls.priority.value === 'low' ? 'primary' : 'flat'"
+          (click)="setPriority('low')"
+        >
+          Низкий
+        </button>
+
+        <button
+          tuiButton
+          type="button"
+          size="s"
+          [appearance]="form.controls.priority.value === 'medium' ? 'primary' : 'flat'"
+          (click)="setPriority('medium')"
+        >
+          Средний
+        </button>
+
+        <button
+          tuiButton
+          type="button"
+          size="s"
+          [appearance]="form.controls.priority.value === 'high' ? 'primary' : 'flat'"
+          (click)="setPriority('high')"
+        >
+          Высокий
+        </button>
+      </div>
+    </div>
+
+    <div class="task-create__field">
+      <span class="task-create__label">Статус</span>
+
+      <div class="task-create__buttons">
+        <button
+          tuiButton
+          type="button"
+          size="s"
+          [appearance]="form.controls.status.value === 'todo' ? 'primary' : 'flat'"
+          (click)="setStatus('todo')"
+        >
+          К выполнению
+        </button>
+
+        <button
+          tuiButton
+          type="button"
+          size="s"
+          [appearance]="form.controls.status.value === 'in_progress' ? 'primary' : 'flat'"
+          (click)="setStatus('in_progress')"
+        >
+          В процессе
+        </button>
+
+        <button
+          tuiButton
+          type="button"
+          size="s"
+          [appearance]="form.controls.status.value === 'done' ? 'primary' : 'flat'"
+          (click)="setStatus('done')"
+        >
+          Выполнено
+        </button>
+      </div>
+    </div>
+
+    <div class="task-create__actions">
+      <button tuiButton type="submit" appearance="primary">
+        Добавить задачу
+      </button>
+
+      <a tuiButton appearance="flat" routerLink="/">
+        Отмена
+      </a>
+    </div>
+  </form>
+</section>

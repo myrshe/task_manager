@@ -1,0 +1,86 @@
+<section class="calendar-page">
+  <div class="calendar-page__header">
+    <div>
+      <h1 class="calendar-page__title">{{ title() }}</h1>
+    </div>
+  </div>
+
+  <div class="calendar-page__controls">
+    <div class="calendar-page__control-group">
+      <span class="calendar-page__control-label">Период:</span>
+
+      <button
+        tuiButton
+        size="s"
+        [appearance]="view() === 'week' ? 'primary' : 'flat'"
+        (click)="setView('week')"
+      >
+        Неделя
+      </button>
+
+      <button
+        tuiButton
+        size="s"
+        [appearance]="view() === 'month' ? 'primary' : 'flat'"
+        (click)="setView('month')"
+      >
+        Месяц
+      </button>
+    </div>
+
+    <div class="calendar-page__control-group">
+      <span class="calendar-page__control-label">Сортировать по:</span>
+
+      <button
+        tuiButton
+        size="s"
+        [appearance]="sortField() === 'deadline' ? 'primary' : 'flat'"
+        (click)="setSortField('deadline')"
+      >
+        Дедлайну
+      </button>
+
+      <button
+        tuiButton
+        size="s"
+        [appearance]="sortField() === 'priority' ? 'primary' : 'flat'"
+        (click)="setSortField('priority')"
+      >
+        Приоритету
+      </button>
+    </div>
+
+    <div class="calendar-page__control-group">
+      <span class="calendar-page__control-label">Порядок:</span>
+
+      <button
+        tuiButton
+        size="s"
+        [appearance]="sortDirection() === 'asc' ? 'primary' : 'flat'"
+        (click)="setSortDirection('asc')"
+      >
+        По возрастанию
+      </button>
+
+      <button
+        tuiButton
+        size="s"
+        [appearance]="sortDirection() === 'desc' ? 'primary' : 'flat'"
+        (click)="setSortDirection('desc')"
+      >
+        По убыванию
+      </button>
+    </div>
+  </div>
+
+  <section class="calendar-page__section">
+    <div class="calendar-page__section-header">
+      <h2 class="calendar-page__section-title">Задачи</h2>
+      <span class="calendar-page__counter">{{ tasks().length }}</span>
+    </div>
+
+    <div class="calendar-page__task-scroll">
+      <app-task-list [tasks]="tasks()" />
+    </div>
+  </section>
+</section>

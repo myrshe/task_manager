@@ -22,6 +22,7 @@
     "@taiga-ui/core": "^5.10.0",
     "@taiga-ui/icons": "^5.10.0",
     "@taiga-ui/kit": "^5.10.0",
+    "idb": "^8.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

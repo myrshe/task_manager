@@ -1,0 +1,11 @@
+@if (tasks().length > 0) {
+  <div class="task-list">
+    @for (task of tasks(); track task.id) {
+      <app-task-card [task]="task" />
+    }
+  </div>
+} @else {
+  <p class="task-list__empty">
+    Задач пока нет.
+  </p>
+}
